@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+</head>
+<body>
+      <div id="app">
+            <app-header></app-header>
+            <app-content></app-content>
+            <app-footer></app-footer>
+      </div>
+      <div id="app2">
+            <app-header></app-header>
+            <!-- <app-footer></app-footer> --> //전역변수에 없기때문에 해당 인스턴스에 미존재
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script>
+            // Vue.componet(컨포넌트이름, 컨포넌트 내용);
+            //전역 컨포넌트 (실제 서비스에서는 사용할 일이 거의 없음. )
+            Vue.component('app-header', {
+                  template : '<h1>Header</h1>'
+            }); //하위컨포넌트로 등록됨.
+            Vue.component('app-content', {
+                  template: '<div>contents</div>'
+            }); 
+
+            // new Vue({
+            //       el: '#app', 
+            //       //지역 컨포넌트 등록 방식 (실제 서비스 등록 방식)
+            //       components : {
+            //             '컨포넌트 이름': 컨포넌트 내용 //key : value 구조로 위의 구조와 동일. 
+            //       }
+            // });
+
+            new Vue({
+                  el: '#app', 
+                  components : {
+                        'app-footer' : {
+                              template : '<footer>footer</footer>'
+                        }
+                  }
+            }); 
+
+            new Vue({
+                  el: '#app2'
+            })
+      </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p v-bind:id = "uuid" v-bind:class="name">{{num}}</p>
+
+        <p>{{doubleNum}}</p>
+        <!-- 조건절  -->
+        <div v-if="loading">
+            Loading...
+        </div>
+        <div v-else>
+            test user has been logged in 
+        </div>
+        <!-- display:none -->
+        <div v-show="loading">데
+            Loading...
+        </div>
+        <!-- https://vuejs.org/ api명세서 -->
+        <div>
+            <!-- TODO 인풋박스에 입력한게 바로 밑에 나타난다. -->
+            <input type="text" v-model="text">
+            <p>{{text}}</p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+   
+        new Vue({
+            el: '#app', 
+            data : {
+                num : 10, 
+                uuid: 'abc1234', 
+                name: 'text-blue', 
+                loading : true, 
+                text: ''
+            }, 
+            methods : {
+                changeInputText: function(value) {
+                    this.text = value; 
+                }
+            },
+            computed: {
+                doubleNum: function() {
+                    return this.num * 2; 
+                }
+            }
+        }); 
+    </script>
+</body>
+</html>
